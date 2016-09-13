@@ -112,7 +112,6 @@ var Comment = React.createClass({
 	}
 });
 
-
 // Called on initial render. This is kinda like the constructor.
 ReactDOM.render(
 	<CommentBox url="api/comments" pollInterval={2000} />,
