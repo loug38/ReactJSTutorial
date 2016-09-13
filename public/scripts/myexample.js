@@ -93,16 +93,14 @@ var CommentForm = React.createClass({
 	},
 
 	handleSubmit: function(e) {
-		return(
-			// Overrides the browser defaul submit action
-			e.preventDefault();
-			var author = this.state.author.trim();
-			var text = this.state.text.trim();
-			if (!text || !author)
-				{ return; }
-			this.props.handleCommentSubmit({author: author, text: text});
-			this.setState({author: '', text: ''});
-		);
+		// Overrides the browser defaul submit action
+		e.preventDefault();
+		var author = this.state.author.trim();
+		var text = this.state.text.trim();
+		if (!text || !author)
+			{ return; }
+		this.props.onCommentSubmit({author: author, text: text});
+		this.setState({author: '', text: ''});
 	},
 
 	render: function(){
@@ -115,7 +113,7 @@ var CommentForm = React.createClass({
 				/>
 				<input 	type="text" 
 								placeholder="Your comment here..."
-								value={this.state.author}
+								value={this.state.text}
 								onChange={this.handleTextChnage}
 				/>
 				<input type="submit" value="Post" />
