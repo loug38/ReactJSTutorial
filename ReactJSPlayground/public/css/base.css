@@ -1,0 +1,16 @@
+body {
+  background: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 30px;
+}
+
+box {
+	background: #fff;
+	flex: 1;
+	border: 1px solid #aaa;
+	padding: 10px;
+	margin: 5;
+}
