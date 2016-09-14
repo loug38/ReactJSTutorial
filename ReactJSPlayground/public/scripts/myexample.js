@@ -4,7 +4,8 @@ var FilterableProductTable = React.createClass({
 		return(
 			<div>
 				<box>
-					{this.props.products[0].category}
+					<title> Products </title>
+					<SearchBar />
 				</box>
 			</div>
 		);
@@ -14,7 +15,11 @@ var FilterableProductTable = React.createClass({
 var SearchBar = React.createClass({
 	render: function(){
 		return(
-			
+			<form>
+				<searchBar>
+					<input type="text" placeholder="Search" />
+				</searchBar>
+			</form>
 		);
 	}
 })

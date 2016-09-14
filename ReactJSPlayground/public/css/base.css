@@ -7,10 +7,22 @@ body {
   padding: 30px;
 }
 
+title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 20px;
+}
+
 box {
+  display: flex;
+  flex-direction: column;
 	background: #fff;
-	flex: 1;
 	border: 1px solid #aaa;
 	padding: 10px;
 	margin: 5;
+}
+
+searchBar {
+  padding: 5px;
 }
