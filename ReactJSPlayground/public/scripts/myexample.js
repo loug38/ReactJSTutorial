@@ -6,6 +6,7 @@ class FilterableProductTable extends React.Component {
 				<box>
 					<title> Products </title>
 					<SearchBar />
+					<ProductList products={this.props.products} />
 				</box>
 			</div>
 		);
@@ -22,6 +23,39 @@ class SearchBar extends React.Component{
 				<input type="checkbox" /> 
 				Only show products in stock
 			</form>
+		);
+	}
+}
+
+class ProductList extends React.Component{
+	render(){
+		var rows = [];
+		var lastCategory = null;
+		this.props.products.forEach(function(product){
+			rows.push(<ProductRow product={product} />); 
+		});
+		return(
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>{rows}</tbody>
+			</table>
+		);
+	}
+}
+
+class ProductRow extends React.Component{
+	render(){
+		return(
+			<tr>
+				<td> {this.props.product.name} </td>
+				<td> {this.props.product.price} </td>
+				<td> {this.props.product.stocked} </td>
+			</tr>
 		);
 	}
 }
