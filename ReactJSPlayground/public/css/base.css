@@ -7,13 +7,6 @@ body {
   padding: 30px;
 }
 
-title {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  padding: 20px;
-}
-
 box {
   display: flex;
   flex-direction: column;
@@ -25,4 +18,15 @@ box {
 
 searchBar {
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+title {
+  display: flex;
+  padding: 5px;
+  font-size: 25px;
+  font-weight: bolder;
+  line-height: 1.7;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
