@@ -1,6 +1,6 @@
 
-var FilterableProductTable = React.createClass({
-	render: function(){
+class FilterableProductTable extends React.Component {
+	render(){
 		return(
 			<div>
 				<box>
@@ -10,10 +10,10 @@ var FilterableProductTable = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
-var SearchBar = React.createClass({
-	render: function(){
+class SearchBar extends React.Component{
+	render(){
 		return(
 			<form>
 				<searchBar>
@@ -24,7 +24,7 @@ var SearchBar = React.createClass({
 			</form>
 		);
 	}
-})
+}
 
 var PRODUCTS = [
   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
