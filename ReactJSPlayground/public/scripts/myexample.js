@@ -1,12 +1,39 @@
 
 class FilterableProductTable extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			stock: []
+		};
+	}
+
+	componentDidMount(){
+		this.loadStockFromServer();
+		setInterval(this.loadStockFromServer, this.props.pollInterval);
+	}
+
+	loadStockFromServer(){
+		$.ajax({
+			url: this.props.url,
+			dataType: 'json',
+			cache: false,
+			success: function (stock) {
+				this.setState({stock: stock});
+			}.bind(this),
+			error: function (xhr, status, err){
+				console.error(this.props.url, status, err.toString());
+			}.bind(this)
+		});
+	}
+
 	render(){
 		return(
 			<div>
 				<box>
 					<title> Products </title>
 					<SearchBar />
-					<ProductList products={this.props.products} />
+					<underline />
+					<ProductList products={this.state.stock} />
 				</box>
 			</div>
 		);
@@ -21,7 +48,7 @@ class SearchBar extends React.Component{
 					<input type="text" placeholder="Search" />
 				</searchBar>
 				<input type="checkbox" /> 
-				Only show products in stock
+				{` Only show products in stock`}
 			</form>
 		);
 	}
@@ -32,7 +59,10 @@ class ProductList extends React.Component{
 		var rows = [];
 		var lastCategory = null;
 		this.props.products.forEach(function(product){
-			rows.push(<ProductRow product={product} />); 
+			if (product.category !== lastCategory)
+				rows.push(<CategoryDivider category={product.category} />);
+			lastCategory = product.category;
+			rows.push(<ProductRow product={product} />);
 		});
 		return(
 			<table>
@@ -40,6 +70,7 @@ class ProductList extends React.Component{
 					<tr>
 						<th>Name</th>
 						<th>Price</th>
+						<th>Stocked</th>
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
@@ -48,29 +79,34 @@ class ProductList extends React.Component{
 	}
 }
 
+class CategoryDivider extends React.Component{
+	render(){
+		return(
+			<th colSpan="2"> {this.props.category} </th>
+		);
+	}
+}
+
 class ProductRow extends React.Component{
 	render(){
+		var color;
+		var stock;
+		if (this.props.product.stocked) {
+			stock = 'yes'; color = 'green';
+		} else { 
+			stock = 'no'; color = 'red';
+		}
 		return(
 			<tr>
 				<td> {this.props.product.name} </td>
 				<td> {this.props.product.price} </td>
-				<td> {this.props.product.stocked} </td>
+				<td style={{color: color}}> {stock} </td>
 			</tr>
 		);
 	}
 }
 
-var PRODUCTS = [
-  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-];
-
-
 ReactDOM.render(
-	<FilterableProductTable products={PRODUCTS} />,
+	<FilterableProductTable url="api/stock" pollInterval={2000}/>,
 	document.getElementById('content')
 );

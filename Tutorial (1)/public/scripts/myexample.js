@@ -88,7 +88,7 @@ var CommentForm = React.createClass({
 		this.setState({author: e.target.value});
 	},
 
-	handleTextChnage: function(e) {
+	handleTextChange: function(e) {
 		this.setState({text: e.target.value});
 	},
 
@@ -114,7 +114,7 @@ var CommentForm = React.createClass({
 				<input 	type="text" 
 								placeholder="Your comment here..."
 								value={this.state.text}
-								onChange={this.handleTextChnage}
+								onChange={this.handleTextChange}
 				/>
 				<input type="submit" value="Post" />
 			</form>
