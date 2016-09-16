@@ -6,6 +6,7 @@ class FilterableProductTable extends React.Component {
 				<box>
 					<title> Products </title>
 					<SearchBar />
+					<divider />
 					<ProductList products={this.props.products} />
 				</box>
 			</div>
@@ -32,6 +33,10 @@ class ProductList extends React.Component{
 		var rows = [];
 		var lastCategory = null;
 		this.props.products.forEach(function(product){
+			if (product.category !== lastCategory){
+				rows.push(<th> {product.category} </th>);
+				lastCategory = product.category;
+			}
 			rows.push(<ProductRow product={product} />); 
 		});
 		return(
@@ -40,6 +45,7 @@ class ProductList extends React.Component{
 					<tr>
 						<th>Name</th>
 						<th>Price</th>
+						<th>In Stock?</th>
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
@@ -49,12 +55,29 @@ class ProductList extends React.Component{
 }
 
 class ProductRow extends React.Component{
+	setStockState(){
+		if (this.props.product.stocked){
+			this.setState({color: 'green', stock: 'Yes'});
+		} else {
+			this.setState({color: 'red', stock: 'No'});
+		}
+		
+	}
+
 	render(){
+		var color = '', stock = '';
+		if (this.props.product.stocked){
+			color = 'green';
+			stock = 'yes';
+		} else {
+			color = 'red';
+			stock = 'no';
+		}
 		return(
 			<tr>
 				<td> {this.props.product.name} </td>
 				<td> {this.props.product.price} </td>
-				<td> {this.props.product.stocked} </td>
+				<td style={{color: color }}> {stock} </td>
 			</tr>
 		);
 	}

@@ -30,3 +30,19 @@ title {
   line-height: 1.7;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+divider {
+  flex: 1;
+  height: 1px;
+  background-color: #aaa;
+}
+
+table {
+  border-spacing: 1em 0;
+}
+
+th {
+  flex: 1;
+  text-align: left;
+  font-size: 20px;
+}
