@@ -31,6 +31,7 @@ title {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+<<<<<<< HEAD
 divider {
   flex: 1;
   height: 1px;
@@ -45,4 +46,20 @@ th {
   flex: 1;
   text-align: left;
   font-size: 20px;
+=======
+th {
+  text-align: left;
+  font-size: 20px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 1em 0;
+}
+
+underline {
+  background: #aaa;
+  height: 2px;
+  flex: 1;
+>>>>>>> 45f6a642ce27f53b8ad7e3094146b2188e70e42b
 }
