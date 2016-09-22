@@ -38,3 +38,17 @@ messagesContainer {
   padding: 10px;
   margin-right: 5;
 }
+
+message {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 30px;
+  background: #37e;
+}
+
+text {
+  color: #fff;
+}
