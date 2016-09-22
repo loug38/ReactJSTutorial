@@ -1,13 +1,14 @@
-
+ 
 class FilterableProductTable extends React.Component {
 	render(){
+		var filterText = '';
 		return(
 			<div>
 				<box>
 					<title> Products </title>
-					<SearchBar />
+					<SearchBar filterText={filterText}/>
 					<divider />
-					<ProductList products={this.props.products} />
+					<ProductList products={this.props.products} filter={filterText} />
 				</box>
 			</div>
 		);
@@ -19,7 +20,7 @@ class SearchBar extends React.Component{
 		return(
 			<form>
 				<searchBar>
-					<input type="text" placeholder="Search" />
+					<input type="text" placeholder="Search" value={this.props.filterText}/>
 				</searchBar>
 				<input type="checkbox" /> 
 				Only show products in stock
@@ -33,6 +34,7 @@ class ProductList extends React.Component{
 		var rows = [];
 		var lastCategory = null;
 		this.props.products.forEach(function(product){
+			if (this.props.filter === '')
 			if (product.category !== lastCategory){
 				rows.push(<th> {product.category} </th>);
 				lastCategory = product.category;
